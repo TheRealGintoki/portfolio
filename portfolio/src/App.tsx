@@ -67,19 +67,23 @@ function Navbar() {
   return (
     <nav className="bg-gray-950 p-4 fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <div className="text-white text-2xl font-bold">James Stevenson</div>
-          <div className="text-gray-300 text-lg font-mono mt-1">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="text-white text-lg sm:text-xl lg:text-2xl font-bold">James Stevenson</div>
+          <div className="text-gray-300 text-sm sm:text-base lg:text-lg font-mono mt-1">
             {time.toLocaleTimeString([], { 
               hour: '2-digit', 
               minute: '2-digit'
             })}
           </div>
         </div>
-        <div>
-          <a href="#about-me" className="text-gray-300 hover:text-white px-10 text-lg">About Me</a>
-          <a href="#skills" className="text-gray-300 hover:text-white px-10 text-lg">Skills</a>
-          <a href="#projects" className="text-gray-300 hover:text-white px-10 text-lg">Projects</a>
+        <div className="hidden md:flex">
+          <a href="#about-me" className="text-gray-300 hover:text-white px-6 lg:px-10 text-base lg:text-lg">About Me</a>
+          <a href="#skills" className="text-gray-300 hover:text-white px-6 lg:px-10 text-base lg:text-lg">Skills</a>
+          <a href="#projects" className="text-gray-300 hover:text-white px-6 lg:px-10 text-base lg:text-lg">Projects</a>
+        </div>
+        <div className="md:hidden flex gap-3">
+          <a href="#about-me" className="text-gray-300 hover:text-white text-sm">About</a>
+          <a href="#skills" className="text-gray-300 hover:text-white text-sm">Skills</a>
         </div>
       </div>
     </nav>
@@ -103,15 +107,15 @@ function Main () {
 // About me, contains name, links, and brief description.
 function AboutMe() {
   return (
-    <section id="about-me" className="min-h-[100vh] flex flex-col justify-center items-center">
-      <h1 className="text-7xl font-bold text-center pb-4 ">
-        <span className="block pr-55">James</span>
-        <span className="block pl-55">Stevenson</span>
+    <section id="about-me" className="min-h-[100vh] flex flex-col justify-center items-center px-4">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center pb-4">
+        <span className="block">James</span>
+        <span className="block">Stevenson</span>
       </h1>
 
       <Links />
 
-      <p className="text-center text-2xl text-gray-200 mt-4 max-w-xl mx-auto ">
+      <p className="text-center text-lg sm:text-xl md:text-2xl text-gray-200 mt-4 max-w-xl mx-auto px-4">
           Future software engineer passionate about learning new technologies and programming.
       </p>
 
@@ -134,7 +138,7 @@ function SocialLink({ href, icon: Icon, alt, className = "" }: {
 
 function Links() {
   return (
-    <div className="flex gap-6 items-center justify-center  ">
+    <div className="flex gap-4 md:gap-6 items-center justify-center">
       <SocialLink 
         href="https://github.com/TheRealGintoki" 
         icon={FaGithub} 
@@ -158,8 +162,8 @@ function SkillIcon({ icon: Icon, name, className = "" }: {
 }) {
   return (
     <div className={`flex flex-col items-center hover:scale-110 transition-transform ${className}`}>
-      <Icon className="text-7xl mb-2" aria-hidden="true" />
-      <span className="text-gray-300 text-2xl">{name}</span>
+      <Icon className="text-5xl sm:text-6xl md:text-7xl mb-2" aria-hidden="true" />
+      <span className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-2xl">{name}</span>
     </div>
   )
 }
@@ -170,12 +174,12 @@ function ProgrammingLanguages() {
   return (
     <div 
       ref={ref} 
-      className={`fade-in ${
+      className={`fade-in px-4 ${
         isVisible ? 'visible' : hasFadedOut ? 'fade-out' : ''
       }`}
     >
-      <h3 className="text-2xl font-semibold text-gray-300 mb-6">Languages</h3>
-      <div className="flex gap-8 items-center justify-center flex-wrap mb-12">
+      <h3 className="text-xl sm:text-2xl font-semibold text-gray-300 mb-6">Languages</h3>
+      <div className="flex gap-4 sm:gap-6 md:gap-8 items-center justify-center flex-wrap mb-8 sm:mb-12">
         <SkillIcon icon={FaHtml5} name="HTML" className="text-orange-500" />
         <SkillIcon icon={FaCss3Alt} name="CSS" className="text-blue-500" />
         <SkillIcon icon={FaJs} name="JavaScript" className="text-yellow-400" />
@@ -184,8 +188,8 @@ function ProgrammingLanguages() {
         <SkillIcon icon={SiPython} name="Python" className="text-yellow-600" />
       </div>
 
-      <h3 className="text-2xl font-semibold text-gray-300 mb-6">Frameworks & Tools</h3>
-      <div className="flex gap-8 items-center justify-center flex-wrap">
+      <h3 className="text-xl sm:text-2xl font-semibold text-gray-300 mb-6">Frameworks & Tools</h3>
+      <div className="flex gap-4 sm:gap-6 md:gap-8 items-center justify-center flex-wrap">
         <SkillIcon icon={FaReact} name="React" className="text-cyan-400" />
         <SkillIcon icon={SiTailwindcss} name="Tailwind" className="text-teal-400" />
         <SkillIcon icon={SiVercel} name="Vercel" className="text-white" />
@@ -202,11 +206,11 @@ function Skills() {
     <section 
       id="skills" 
       ref={ref}
-      className={`text-center min-h-[90vh] flex flex-col justify-center items-center fade-in ${
+      className={`text-center min-h-[90vh] flex flex-col justify-center items-center px-4 fade-in ${
         isVisible ? 'visible' : hasFadedOut ? 'fade-out' : ''
       }`}
     >
-      <h2 className="text-4xl font-bold pb-10 text-white">My Skills</h2>
+      <h2 className="text-3xl sm:text-4xl font-bold pb-8 sm:pb-10 text-white">My Skills</h2>
       <ProgrammingLanguages />
     </section>
   )
@@ -220,19 +224,19 @@ function ProjectCard({Image, title, description, link}: {
   link: string
 }) { 
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg m-4 bg-zinc-900 border border-gray-500 hover:scale-105 transition-transform">
+    <div className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg m-2 sm:m-4 bg-zinc-900 border border-gray-500 hover:scale-105 transition-transform">
       <img 
         src={Image} 
         alt={title}
-        className="w-full h-64 object-cover" 
+        className="w-full h-48 sm:h-64 object-cover" 
       />
       
-      <div className="px-6 py-4">
-        <h3 className="font-bold text-xl mb-2 text-white">{title}</h3>
-        <p className="text-gray-300 text-base">{description}</p>
+      <div className="px-4 sm:px-6 py-4">
+        <h3 className="font-bold text-lg sm:text-xl mb-2 text-white">{title}</h3>
+        <p className="text-gray-300 text-sm sm:text-base">{description}</p>
       </div>
       
-      <div className="px-6 pt-4 pb-6">
+      <div className="px-4 sm:px-6 pt-4 pb-6">
 
         <SocialLink 
           href={link} 
@@ -254,12 +258,12 @@ function Projects() {
     <section 
       id="projects" 
       ref={ref}
-      className={`text-center min-h-[90vh] flex flex-col justify-center items-center fade-in ${
+      className={`text-center min-h-[90vh] flex flex-col justify-center items-center px-4 fade-in ${
         isVisible ? 'visible' : hasFadedOut ? 'fade-out' : ''
       }`}
     >
-      <h2 className="text-4xl font-bold pb-10 text-white">My Projects</h2>
-      <div className="flex flex-wrap justify-center">
+      <h2 className="text-3xl sm:text-4xl font-bold pb-8 sm:pb-10 text-white">My Projects</h2>
+      <div className="flex flex-wrap justify-center max-w-6xl">
         <ProjectCard
           Image={ProjectImage}
           title="My Portfolio"
