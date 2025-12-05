@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "tailwindcss": "^4.1.14"
+  },
+  "homepage": "https://therealgintoki.github.io/portfolio",
+  "scripts": {
+    "predeploy": "cd portfolio && npm run build",
+    "deploy": "gh-pages -d portfolio/dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
